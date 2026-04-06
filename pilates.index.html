@@ -1,0 +1,422 @@
+```react
+import React, { useState, useEffect } from 'react';
+import { 
+  Activity, 
+  BookOpen, 
+  Brain, 
+  HeartPulse, 
+  Stethoscope, 
+  Trophy, 
+  Wind, 
+  Accessibility,
+  Menu,
+  X,
+  ChevronUp
+} from 'lucide-react';
+
+// --- データ定義 ---
+const documentTitle = "ピラティス・メソッドの包括的科学的根拠";
+const documentSubtitle = "生体力学的適応、臨床的有効性、および神経精神医学的効果に関する体系的専門報告書";
+
+const sections = [
+  {
+    id: "section-1",
+    icon: <Activity className="w-6 h-6 text-blue-600" />,
+    title: "1. 基礎的身体機能の最適化メカニズム",
+    subtitle: "深層体幹筋群の構造的適応と姿勢制御",
+    content: [
+      {
+        subHeading: "ピラティスの全体的な効果",
+        text: "ピラティスは健康な成人からアスリート、高齢者に至るまで、基礎的な身体機能を全般的に向上させることが複数の系統的レビューによって示されている。Bulloらの系統的レビューをはじめとする多様なメタ解析において、柔軟性、筋緊張と筋力、バランス、協調性、姿勢制御、有酸素持久力、身体組成、および機能的自立の向上が広範に報告されている。これらの機能向上の根底には、特異的な解剖学的および生理学的適応が存在する。"
+      },
+      {
+        subHeading: "腹横筋および多裂筋の活性化と肥大",
+        text: "ピラティスの核心的なメカニズムは、動的運動中に体幹の剛性 (trunk stiffness)と安定性を提供する主要な姿勢制御筋である腹横筋 (TrA)の意識的かつ優先的な動員にある。ピラティスでは各動作の前に腹横筋を内側に引き込む (\"pulled in\")特異的な指示(キューイング)が与えられ、ピラティス特有の強制呼気(forced expiration) パターンが腹横筋の収縮を最大化することが研究で示されている。\n\nこの神経筋の活性化は、単なる一時的な筋活動の増加に留まらず、筋肉の構造的適応を引き起こす。リアルタイム超音波画像診断を用いた厳密な臨床試験において、ピラティス介入後に腹横筋、腰部多裂筋、および内腹斜筋の筋肉の厚みが有意に増加することが確認されている。対照群と比較して、ピラティス介入群はこれらの深層筋群における筋肥大と筋収縮効率の向上が観察されており、これはピラティスが脊柱の分節的安定性を物理的に強化する強力なツールであることを生理解剖学的に証明している。"
+      },
+      {
+        subHeading: "姿勢制御およびアライメントの修正",
+        text: "ピラティスは頭部、頸部、および肩甲帯の効率的な生体力学的構成を強調する。具体的には、頸椎のわずかな前方屈曲、肩甲骨の後退と下制による安定化、そして骨盤の後傾(posterior pelvic tilt)を促す。この空間的配置は、現代人に特有の過度な腰椎の前弯を減少させ、体幹の屈筋群と伸筋群を同時に効果的に活性化するための最適な力学的ポジションであるとされている。\n\n実際の臨床的成果として、ピラティスベースのトレーニングプログラムは、立位時の胸椎の過度な屈曲(猫背姿勢)を減少させ、座位時の腰椎の伸展を増加させることが確認されている。これにより、上部脊椎の静的姿勢が改善されるだけでなく、四肢の動的運動中における体幹の代償的動作を抑制し、中枢から末梢へのエネルギー伝達効率を最大化する効果が実証されている。"
+      }
+    ]
+  },
+  {
+    id: "section-2",
+    icon: <Stethoscope className="w-6 h-6 text-blue-600" />,
+    title: "2. 慢性腰痛(CLBP)に対する治療的介入",
+    subtitle: "臨床的有効性とエビデンス",
+    content: [
+      {
+        subHeading: "概要",
+        text: "ピラティスの臨床応用において、世界的に最も広範に研究され、かつ確固たるエビデンスが蓄積されている領域が、慢性腰痛 (CLBP)の保存的管理と治療である。CLBPは筋骨格系の障害の中で最も頻繁に報告される疾患の一つであり、労働生産性の低下や著しい医療費の増大を招くため、医療経済学的な観点からもその解決が急務とされている。\n\n1566の記録から厳選された36の記事を含む最新のシステマティックレビューにおいて、ピラティス・エクササイズは無介入や非特異的な運動と比較して、腰痛を統計的かつ臨床的に有意に減少させることが結論付けられている。"
+      },
+      {
+        subHeading: "痛みの軽減に関する効果量と臨床的意義",
+        text: "痛みの軽減に関して、ピラティス介入は4週間から15週間の短期的な期間において、通常のケアや一般的な身体活動と比較して顕著な改善をもたらす。複数の高品質なランダム化比較試験(RCT)において、この痛みの軽減は「最小臨床的有意差(MCID)」を満たすか、それを超えるレベルであることが確認されている。"
+      }
+    ],
+    table: {
+      title: "表1: 慢性腰痛に対するピラティスの痛みの軽減効果 (SMDと異質性)",
+      headers: ["比較対象(慢性腰痛の痛み軽減)", "標準化平均差(SMD)", "95%信頼区間(CI)", "異質性(I^2)"],
+      rows: [
+        ["他の介入群との比較", "-1.74", "2.63 ~ -0.85", "83.6%"],
+        ["無介入群との比較", "-1.01", "1.93 ~ -0.09", "73.9%"],
+        ["通常のケア群との比較", "-0.88", "-1.11 ~ -0.64", "0%"],
+        ["プールされた全体効果", "-1.25", "-1.70 ~ -0.80", "77.0%"]
+      ]
+    },
+    afterTable: [
+      {
+        text: "全体のプールされた効果量 (SMD: -1.25)は統計学的に「極めて大きい」レベルにあるが、同時に異質性も高いことが観察される。これは、マットベースと器具ベースのピラティスの違いや、インストラクターの質、介入頻度の違いが結果にばらつきを与えていることを示唆している。"
+      },
+      {
+        subHeading: "機能的障害(Disability)の改善",
+        text: "機能的障害の改善指標(RMDQやOswestry)においても、ピラティス群は通常のケアと比較して中等度の効果を示した。特筆すべきは、ピラティストレーニング完了から6ヶ月が経過した時点においても、痛みの数値評価スケールおよび障害度における改善が維持されていたという長期追跡データである。ピラティスが単なる対症療法ではなく、神経筋の運動パターンを根本的に再教育し、日常生活における生体力学的負荷を自律的に分散させる能力を患者に定着させていることの強力な証拠である。"
+      }
+    ]
+  },
+  {
+    id: "section-3",
+    icon: <Accessibility className="w-6 h-6 text-blue-600" />,
+    title: "3. 脊柱変形および姿勢障害に対する形態学的矯正効果",
+    content: [
+      {
+        text: "近年、ピラティスは慢性疼痛の管理だけでなく、特発性側弯症などの脊柱変形や、不良姿勢の非侵襲的(保存的)な矯正アプローチとしても強い注目を集めている。最新のシステマティックレビューでは、ピラティスが脊柱の三次元的アライメントに直接的な影響を与えることが実証された。\n\n脊柱変形の客観的評価に用いられるコブ角、体幹回旋角度(ATR)、胸郭拡張、および関節可動域(ROM)の測定において、ピラティス介入群は有意な改善を示した。ピラティスは非対称的な筋肉の緊張を緩和し、凹側の弱化した筋肉を特異的に強化しつつ、凸側の短縮した筋肉を伸張することで、脊椎にかかる不均等な力学的ストレスを再分配する。"
+      },
+      {
+        text: "不良姿勢や脊柱変形は、単なる外見上の問題に留まらず、内臓の圧迫、呼吸機能の低下、そして早発性の椎間板変性を引き起こす。ピラティスがこれらの病理学的進行を遅延させ、正常な組織機能と器官の維持に寄与する有用な補完療法としての地位を確立しつつあることは、整形外科学および理学療法学において極めて重要な進展である。"
+      }
+    ]
+  },
+  {
+    id: "section-4",
+    icon: <HeartPulse className="w-6 h-6 text-blue-600" />,
+    title: "4. 高齢者における機能的自立の促進",
+    subtitle: "サルコペニア対策、および転倒リスクの劇的低減",
+    content: [
+      {
+        text: "世界的な人口動態の高齢化に伴い、「健康寿命の延伸」と虚弱(frailty)の予防が公衆衛生における最重要課題となっている。加齢は筋肉量と筋力の漸進的な喪失(サルコペニア)を引き起こし、姿勢バランスが致命的に損なわれる。\n\nピラティスは、アメリカスポーツ医学会(ACSM)が高齢者に推奨するトレーニングの三大要素である「筋力、バランス、柔軟性」をすべて包括的に提供するため、高齢者集団に対して極めて適した運動モダリティである。"
+      }
+    ],
+    table: {
+      title: "表2: 高齢者に対するピラティスの身体的効果および転倒リスク低減のメタ解析結果",
+      headers: ["身体パフォーマンス指標", "効果量 (ES)", "95%信頼区間(CI)", "効果の程度"],
+      rows: [
+        ["転倒リスク (Risk of Falls)", "0.90", "0.41 ~ 1.38", "大 (Large)"],
+        ["筋力 (Strength)", "0.63", "0.44 ~ 0.81", "中 (Moderate)"],
+        ["機能性 (Functionality)", "0.51", "0.32 ~ 0.72", "中 (Moderate)"],
+        ["柔軟性 (Flexibility)", "0.41", "0.16 ~ 0.67", "中 (Moderate)"],
+        ["バランス (Balance)", "0.36", "0.21 ~ 0.50", "中 (Moderate)"]
+      ]
+    },
+    afterTable: [
+      {
+        text: "このデータにおいて最も特筆すべき医学的発見は、ピラティスが転倒リスクに対して極めて大きな抑制効果 (ES=0.90) を示している点である。ピラティス特有の足裏からの固有受容覚の入力強化、重心(センター)の意識化、そして不整地や外乱に対する動的バランスの向上が複合的に作用し、転倒の生体力学的な引き金を未然に防ぐ高度な身体制御を獲得させていると推論される。"
+      },
+      {
+        text: "さらに、6分間歩行テストを用いた研究では、ピラティス群は対照群と比較して歩行距離が平均38.29メートル増加するという、有意な改善を示した。これは高齢者の機能的モビリティを向上させ、自立した日常生活動作(ADL)の維持に直接的に貢献することを実証している。"
+      }
+    ]
+  },
+  {
+    id: "section-5",
+    icon: <Brain className="w-6 h-6 text-blue-600" />,
+    title: "5. 精神的健康、心理的ウェルビーイング",
+    subtitle: "および神経精神医学的効果",
+    content: [
+      {
+        text: "ピラティスは「マインド・ボディ・エクササイズ」として分類され、身体的な適応と並行して、心理的および精神的健康に対しても強力かつ定量的な改善効果を発揮する。FlemingとHerringによって実施された厳密なメタ解析は、ピラティスが抑うつ症状や不安症状に対して、精神医学的介入に匹敵するレベルの非常に大きな効果をもたらすことを明らかにした。"
+      }
+    ],
+    table: {
+      title: "表3: ピラティスによる精神的健康の改善効果(メタ解析データ)",
+      headers: ["精神的健康指標", "人口効果量 (Hedges' Δ)", "95%信頼区間(CI)", "Zスコア", "p値"],
+      rows: [
+        ["活力の向上", "1.49", "0.67 ~ 2.30", "3.57", "< 0.001"],
+        ["不安症状の軽減", "1.29", "0.24 ~ 2.33", "2.40", "≤ 0.02"],
+        ["抑うつ症状の軽減", "1.27", "0.44 ~ 2.09", "3.02", "0.003"],
+        ["疲労感の軽減", "0.93", "0.21 ~ 1.66", "2.52", "≤ 0.012"]
+      ]
+    },
+    afterTable: [
+      {
+        text: "Hedges' Δが0.8を超える場合は「大きな効果」と見なされるが、ピラティスによる活力の向上 (Δ=1.49)、不安の軽減 (Δ=1.29)、抑うつの軽減 (Δ=1.27) は、それを遥かに凌駕する並外れた数値を示している。\n\nこの劇的な心理的効果の背後には、深い横隔膜呼吸による迷走神経の刺激（副交感神経優位へのシフト）や、自己の身体感覚への深い集中によるマインドフルネス状態の誘発など、複数の中枢神経系の調整メカニズムが推測される。また、線維筋痛症のような中枢性疼痛感作症候群の患者に対しても、慢性的な身体的苦痛と心理的疲弊の悪循環を断ち切る手段として極めて有効であることが示されている。"
+      }
+    ]
+  },
+  {
+    id: "section-6",
+    icon: <Trophy className="w-6 h-6 text-blue-600" />,
+    title: "6. スポーツパフォーマンスの飛躍的向上",
+    subtitle: "およびアスリートの障害予防メカニズム",
+    content: [
+      {
+        text: "ピラティスは今日ではトップアスリートの競技パフォーマンス向上およびスポーツ障害予防の不可欠な要素としてスポーツ科学領域に統合されている。4週間から14週間の介入で、アスリートの姿勢安定性、バランス、敏捷性、筋力、柔軟性、全般的なスプリントパフォーマンス、VO2max、競技特有の技術的スキルを有意に向上させることが明らかになっている。"
+      },
+      {
+        subHeading: "コアの強化と四肢へのエネルギー伝達",
+        text: "「センタリング」の原則は、身体の中心(パワーハウス)から生み出された力を効率的に末梢へと伝達する基盤を構築する。野球選手を対象とした研究では、体幹強度や肩関節周辺の安定性が劇的に向上した。回旋スポーツにおいて、安定した骨盤は運動エネルギーを漏れなく上肢へと伝えるための不可欠な連結要素となる。"
+      },
+      {
+        subHeading: "動的バランスと敏捷性の向上",
+        text: "方向転換を絶え間なく要求される競技において、骨盤-腰椎領域の安定化は、運動方向の切り替え時における体幹の過度な動揺(エネルギーロス)を防ぐ。また全身の協調性の向上は、肉離れなどのスポーツ障害予防に対しても直接的に寄与する。"
+      },
+      {
+        subHeading: "格闘技・武道における姿勢制御",
+        text: "空手アスリートを対象とした研究では、体幹筋群の強度が著しく向上し、静的・動的バランスが最適化された。不測の外乱に対するリアクションにおいて、高度な固有受容覚と深層筋の即時的な動員能力は決定的な競技的優位性をもたらす。"
+      }
+    ]
+  },
+  {
+    id: "section-7",
+    icon: <Wind className="w-6 h-6 text-blue-600" />,
+    title: "7. 新興の臨床応用領域",
+    subtitle: "COVID-19罹患後の呼吸機能および運動制御の回復",
+    content: [
+      {
+        text: "近年、ピラティスの呼吸制御と体幹安定化のメカニズムは、新たな公衆衛生上の課題にも応用されている。COVID-19感染後の回復期(ロング・コビッド)にある患者を対象とした最新の研究では、ピラティスが体幹の筋肉の持久力と姿勢バランスを劇的に改善することが確認された。\n\nピラティスは横隔膜を中心とした胸式側方呼吸を強調するため、呼吸機能のリハビリテーションと筋骨格系の再建を同時に達成することができる。重心動揺評価において、ピラティス治療後の患者群は重心の動揺を示す指標が有意に減少し、感染症による神経的および筋肉的な退行を逆転させる安全なリハビリテーション介入であることを証明している。"
+      }
+    ]
+  },
+  {
+    id: "section-8",
+    icon: <BookOpen className="w-6 h-6 text-blue-600" />,
+    title: "8. 結論および将来の臨床的・研究的展望",
+    content: [
+      {
+        text: "本包括的分析から導き出される最終的な結論は、ピラティス・メソッドが単独の筋肉を肥大させるための局所的なトレーニングではなく、中枢神経系、筋骨格系、および自律神経系を再統合し、人間が本来持つ生体力学的効率を最大限に引き出す高度な「システム」であるということである。"
+      },
+      {
+        subHeading: "4つの主要な結論",
+        list: [
+          "生体力学の再構築: 深層体幹筋群を構造的に変化させ、脊柱の安定性を根本から再構築。慢性腰痛の痛みを長期的に軽減させる。",
+          "老年医学・予防医学への貢献: 高齢者の転倒リスクを劇的に減少(ES=0.90)。健康寿命を延伸するための最も費用対効果が高く安全な介入の一つ。",
+          "精神医学・心身医学の補助的治療法: 不安(Δ=1.29)や抑うつ(Δ=1.27)に対して従来療法に匹敵する大規模な改善効果。線維筋痛症などの難治性疼痛の緩和にも寄与。",
+          "スポーツ科学と整形外科学の架け橋: コアの安定性を基盤としアスリートのパフォーマンスを向上させると同時に、脊柱側弯症などの形態学的変形を保存的に矯正。"
+        ]
+      },
+      {
+        text: "過緊張した筋肉を解きほぐし、過敏になった神経系を鎮静させ、重力に抗する脊柱の完全性を取り戻すこのメソッドは、今後も予防医学、リハビリテーション、スポーツパフォーマンス向上の最前線において極めて重要な役割を果たし続けるであろう。"
+      }
+    ]
+  }
+];
+
+// --- コンポーネント ---
+
+const SectionCard = ({ section }) => {
+  return (
+    <div id={section.id} className="scroll-mt-24 mb-16 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all duration-300 hover:shadow-md">
+      <div className="bg-slate-50 px-6 py-5 border-b border-slate-200 flex items-center gap-4">
+        <div className="bg-blue-100 p-3 rounded-lg">
+          {section.icon}
+        </div>
+        <div>
+          <h2 className="text-xl md:text-2xl font-bold text-slate-800">{section.title}</h2>
+          {section.subtitle && <p className="text-sm md:text-base text-slate-500 mt-1">{section.subtitle}</p>}
+        </div>
+      </div>
+      
+      <div className="p-6 md:p-8 space-y-8">
+        {section.content.map((block, idx) => (
+          <div key={idx} className="space-y-3">
+            {block.subHeading && <h3 className="text-lg font-bold text-slate-700 border-l-4 border-blue-500 pl-3">{block.subHeading}</h3>}
+            {block.text && (
+              <div className="text-slate-600 leading-relaxed whitespace-pre-line">
+                {block.text}
+              </div>
+            )}
+            {block.list && (
+              <ul className="space-y-3 mt-4">
+                {block.list.map((item, i) => (
+                  <li key={i} className="flex gap-3 text-slate-600 leading-relaxed">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm font-bold mt-0.5">
+                      {i + 1}
+                    </div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+
+        {section.table && (
+          <div className="mt-8 bg-slate-50 rounded-xl p-4 border border-slate-200 overflow-x-auto">
+            <h4 className="font-bold text-slate-700 mb-4 text-center">{section.table.title}</h4>
+            <table className="w-full text-sm text-left text-slate-600">
+              <thead className="text-xs text-slate-700 uppercase bg-slate-200">
+                <tr>
+                  {section.table.headers.map((h, i) => (
+                    <th key={i} className="px-4 py-3">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {section.table.rows.map((row, i) => (
+                  <tr key={i} className="bg-white border-b border-slate-200 hover:bg-slate-50">
+                    {row.map((cell, j) => (
+                      <td key={j} className={`px-4 py-3 ${j===0 ? 'font-medium text-slate-800' : ''}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </ul>
+            </table>
+          </div>
+        )}
+
+        {section.afterTable && section.afterTable.map((block, idx) => (
+          <div key={`after-${idx}`} className="space-y-3 pt-4">
+            {block.subHeading && <h3 className="text-lg font-bold text-slate-700 border-l-4 border-blue-500 pl-3">{block.subHeading}</h3>}
+            {block.text && (
+              <div className="text-slate-600 leading-relaxed whitespace-pre-line">
+                {block.text}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default function App() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(sections[0].id);
+  const [showTopBtn, setShowTopBtn] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // トップに戻るボタンの表示制御
+      setShowTopBtn(window.scrollY > 400);
+
+      // アクティブなセクションの検出
+      const sectionElements = sections.map(s => document.getElementById(s.id));
+      const currentScrollPos = window.scrollY + 100;
+
+      for (let i = sectionElements.length - 1; i >= 0; i--) {
+        const el = sectionElements[i];
+        if (el && currentScrollPos >= el.offsetTop) {
+          setActiveSection(el.id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavClick = (id) => {
+    setSidebarOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-100 font-sans text-slate-800">
+      
+      {/* モバイルヘッダー */}
+      <header className="lg:hidden sticky top-0 z-40 bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between shadow-sm">
+        <h1 className="font-bold text-lg text-slate-800 truncate pr-4">ピラティス論文まとめ</h1>
+        <button onClick={() => setSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-100 rounded-md text-slate-600">
+          {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </header>
+
+      <div className="max-w-7xl mx-auto flex">
+        
+        {/* サイドバー (ナビゲーション) */}
+        <aside className={`
+          fixed lg:sticky top-0 lg:top-0 h-screen z-30
+          w-72 bg-white border-r border-slate-200 shadow-lg lg:shadow-none
+          transform transition-transform duration-300 ease-in-out flex flex-col
+          ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        `}>
+          <div className="p-6 border-b border-slate-100 hidden lg:block bg-slate-50">
+            <h1 className="font-extrabold text-xl leading-tight text-blue-900">
+              Pilates<br/>Research Summary
+            </h1>
+          </div>
+          
+          <div className="flex-1 overflow-y-auto p-4 space-y-1">
+            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 px-2 mt-2">目次</p>
+            {sections.map(section => (
+              <button
+                key={section.id}
+                onClick={() => handleNavClick(section.id)}
+                className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors flex items-start gap-3
+                  ${activeSection === section.id 
+                    ? 'bg-blue-50 text-blue-700 font-medium' 
+                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}
+                `}
+              >
+                <div className={`mt-0.5 ${activeSection === section.id ? 'text-blue-600' : 'text-slate-400'}`}>
+                  {React.cloneElement(section.icon, { className: "w-4 h-4" })}
+                </div>
+                <span className="leading-snug">{section.title}</span>
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        {/* オーバーレイ (モバイル用) */}
+        {isSidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-slate-900/50 z-20 lg:hidden backdrop-blur-sm"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
+        {/* メインコンテンツ */}
+        <main className="flex-1 min-w-0 pb-20">
+          
+          {/* ヒーローセクション */}
+          <div className="bg-gradient-to-br from-blue-900 to-slate-800 text-white px-6 py-16 md:py-24 mb-12">
+            <div className="max-w-4xl mx-auto">
+              <div className="inline-block px-3 py-1 bg-blue-800/50 rounded-full text-blue-200 text-sm font-semibold tracking-wider mb-6 border border-blue-700">
+                SYSTEMATIC REPORT
+              </div>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight mb-6">
+                {documentTitle}
+              </h1>
+              <p className="text-lg md:text-xl text-blue-100 leading-relaxed max-w-3xl opacity-90">
+                {documentSubtitle}
+              </p>
+            </div>
+          </div>
+
+          {/* 記事コンテンツ */}
+          <div className="px-4 md:px-8 max-w-4xl mx-auto">
+            {sections.map(section => (
+              <SectionCard key={section.id} section={section} />
+            ))}
+          </div>
+          
+          {/* フッター / 参考文献注記 */}
+          <footer className="max-w-4xl mx-auto px-4 md:px-8 mt-16 mb-8 text-center text-sm text-slate-500">
+            <p>※本サイトは提供された「ピラティス論文まとめ」PDF資料に基づき再構成されています。</p>
+            <p className="mt-2">各メタ解析および原著論文の詳細は元資料の「9. 引用元論文タイトル要約」をご参照ください。</p>
+          </footer>
+        </main>
+      </div>
+
+      {/* トップへ戻るボタン */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 p-3 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-all duration-300 z-50 ${showTopBtn ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0 pointer-events-none'}`}
+        aria-label="トップへ戻る"
+      >
+        <ChevronUp size={24} />
+      </button>
+
+    </div>
+  );
+}
+
+```

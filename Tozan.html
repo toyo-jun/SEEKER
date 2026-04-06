@@ -1,0 +1,276 @@
+```html
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登山の教科書 - 最高の万能薬としての山歩き</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Helvetica Neue"', 'Arial', '"Hiragino Kaku Gothic ProN"', '"Hiragino Sans"', 'Meiryo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-pattern {
+            background-color: #14532d;
+            background-image: linear-gradient(135deg, #166534 25%, transparent 25%), linear-gradient(225deg, #166534 25%, transparent 25%), linear-gradient(45deg, #166534 25%, transparent 25%), linear-gradient(315deg, #166534 25%, #14532d 25%);
+            background-position: 10px 0, 10px 0, 0 0, 0 0;
+            background-size: 20px 20px;
+            background-repeat: repeat;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased leading-relaxed">
+
+    <!-- ヘッダー / ヒーローセクション -->
+    <header class="relative hero-pattern text-white py-24 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <i data-lucide="mountain" class="w-16 h-16 mx-auto mb-6 text-brand-100"></i>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+                登山の教科書
+            </h1>
+            <p class="text-xl sm:text-2xl font-medium text-brand-50 mb-8">
+                現代における最高峰の運動。<br class="hidden sm:block">脳と身体をアップデートする「最高の万能薬」
+            </p>
+            <a href="#main-content" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-brand-900 bg-white hover:bg-brand-50 rounded-full transition-colors shadow-lg">
+                内容を見る
+                <i data-lucide="arrow-down" class="ml-2 w-5 h-5"></i>
+            </a>
+        </div>
+    </header>
+
+    <main id="main-content" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+
+        <!-- なぜ登山が最高峰の運動なのか -->
+        <section>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">なぜ登山が現代における<br class="sm:hidden">最高峰の運動なのか</h2>
+                <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm p-8 sm:p-10 border border-slate-100">
+                <p class="text-lg mb-8">テクノロジーの恩恵で便利になった一方、<strong>「身体活動」と「自然環境」の減少</strong>により、慢性的な不調や精神的な不安定さ、高齢者の介護問題などが増加しています。そこで医学的・科学的にも再評価されているのが「登山」です。</p>
+                
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div class="flex items-start bg-brand-50 p-6 rounded-xl">
+                        <div class="flex-shrink-0 bg-brand-500 text-white p-3 rounded-lg mr-4">
+                            <i data-lucide="activity" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">物理的な刺激</h3>
+                            <p class="text-slate-600">アップダウンによる筋肉、骨、呼吸循環器（内臓や血管）への強力な刺激。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-blue-50 p-6 rounded-xl">
+                        <div class="flex-shrink-0 bg-blue-500 text-white p-3 rounded-lg mr-4">
+                            <i data-lucide="sparkles" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 mb-2">感覚的な刺激</h3>
+                            <p class="text-slate-600">自然環境を通した五感への刺激による、脳や神経・自律神経へのアプローチ。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 登山の3大健康効果 -->
+        <section>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">登山の3大健康効果</h2>
+                <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-600">多くの研究により、登山は単なるレジャーの枠を超えた効果を持つことが証明されています。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 効果1: 生活習慣病 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-slate-100 flex flex-col">
+                    <div class="p-6 bg-red-50 flex items-center justify-center h-32">
+                        <i data-lucide="heart-pulse" class="w-16 h-16 text-red-500"></i>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">1. 生活習慣病の予防・改善</h3>
+                        <ul class="space-y-3 text-slate-600">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>驚異的な糖尿病予防:</strong> 有病率が男性3.8%、女性1.4%と極めて低い（同年代標準は約20%）。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>脂肪燃焼と肥満防止:</strong> 長時間の有酸素運動により体脂肪を効果的に燃焼。基礎代謝も向上。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>血圧の低下と血管強化:</strong> 心肺機能の向上で血圧改善。「有酸素運動＋筋トレ」のダブル効果。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 効果2: 身体要因 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-slate-100 flex flex-col">
+                    <div class="p-6 bg-amber-50 flex items-center justify-center h-32">
+                        <i data-lucide="dumbbell" class="w-16 h-16 text-amber-500"></i>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">2. 筋力と骨の強化（身体機能）</h3>
+                        <ul class="space-y-3 text-slate-600">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>天然の筋トレ:</strong> 下半身の大きな筋肉（抗重力筋）が顕著に向上。脚筋力が標準値の20%以上高く。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>骨粗鬆症の予防:</strong> 多方向からの強力な負荷が骨密度を向上（週1回で10%向上のデータも）。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>バランス機能の改善:</strong> 不整地を歩くことで無意識の姿勢制御能力が磨かれ、転倒予防に。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 効果3: 脳機能 -->
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-slate-100 flex flex-col">
+                    <div class="p-6 bg-purple-50 flex items-center justify-center h-32">
+                        <i data-lucide="brain" class="w-16 h-16 text-purple-500"></i>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 border-b pb-2">3. 脳機能・認知機能の向上</h3>
+                        <ul class="space-y-3 text-slate-600">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>認知症の予防:</strong> 五感へのあらゆる感覚刺激が脳へ送られ、認知機能を劇的に向上させる。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>脳疲労の改善:</strong> 脳血流改善と、自然界の「1/fゆらぎ」によるリラックス・自律神経調整効果。</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500 mr-2 flex-shrink-0 mt-0.5"></i>
+                                <span><strong>子どもの発育:</strong> 運動、コミュニケーション、知的好奇心の3要素を網羅し成長を促す。</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 健康登山の頻度と強度 -->
+        <section class="bg-slate-800 text-white rounded-3xl p-8 sm:p-12 shadow-xl">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4">健康登山の実践ガイド</h2>
+                <div class="w-16 h-1 bg-brand-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-8">
+                <div class="bg-slate-700/50 p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="calendar" class="w-8 h-8 text-brand-400 mr-3"></i>
+                        <h3 class="text-xl font-bold">推奨頻度</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-300 text-sm">
+                        <li><span class="text-brand-300 font-bold block text-base mb-1">理想：週1回</span>生活習慣病の予防や体力増進に最適。</li>
+                        <li><span class="text-brand-300 font-bold block text-base mb-1">最低限：月1回</span>脳疲労の改善や健康維持に。初心者もここから。</li>
+                        <li><span class="text-slate-400 font-bold block text-base mb-1">行けない期間は？</span>週4回の「インターバル速歩」（ゆっくり3分＋速歩き3分）で体力維持を。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-700/50 p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="gauge" class="w-8 h-8 text-brand-400 mr-3"></i>
+                        <h3 class="text-xl font-bold">運動の強度</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-300 text-sm">
+                        <li><span class="text-brand-300 font-bold block text-base mb-1">健康維持・増進</span>隣の人と「会話ができるペース」。</li>
+                        <li><span class="text-brand-300 font-bold block text-base mb-1">体力作り</span>息が上がりながらも「会話できるペース」。</li>
+                        <li><span class="text-brand-300 font-bold block text-base mb-1">パフォーマンス向上</span>上りは会話が乱れるペース、下りは会話できるペースで。</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-700/50 p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-brand-400 mr-3"></i>
+                        <h3 class="text-xl font-bold">場所・標高</h3>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        まずは<strong>標高500m程度</strong>の身近な低山（高尾山など）から始めましょう。<br><br>
+                        行動時間は<strong>半日（3〜4時間程度）</strong>からスタートすることを推奨します。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 著者プロフィール -->
+        <section class="max-w-3xl mx-auto mt-20">
+            <div class="bg-white rounded-2xl p-8 sm:p-10 border border-slate-200 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
+                    <i data-lucide="mountain" class="w-48 h-48"></i>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 flex items-center">
+                        <i data-lucide="user" class="w-6 h-6 mr-3 text-brand-600"></i>
+                        山と私のストーリー
+                    </h3>
+                    <div class="space-y-6">
+                        <div class="border-l-2 border-brand-200 pl-4 ml-2">
+                            <h4 class="font-bold text-slate-900">生まれ〜高校</h4>
+                            <p class="text-sm text-slate-600 mt-1">長崎の山奥で育ち、日常的な坂道や祖父・父との登山で無意識のうちに足腰が鍛えられる。</p>
+                        </div>
+                        <div class="border-l-2 border-brand-200 pl-4 ml-2">
+                            <h4 class="font-bold text-slate-900">大学時代</h4>
+                            <p class="text-sm text-slate-600 mt-1">登山研究の権威、山本正嘉教授の研究室で運動生理学や登山の身体への影響を研究。</p>
+                        </div>
+                        <div class="border-l-2 border-brand-200 pl-4 ml-2">
+                            <h4 class="font-bold text-slate-900">社会人〜現在</h4>
+                            <p class="text-sm text-slate-600 mt-1">世界的登山家・三浦雄一郎氏の元で高所登山者専門トレーナーとして勤務。自らも登山やトレイルランニング（100マイル完走）を実践し、山の素晴らしさを体現。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center mt-12">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-white mb-4">まずは月1回の低山ハイキングから！</h2>
+            <p class="mb-8 max-w-2xl mx-auto">
+                登山はあらゆるトレーニング効果を網羅し、自然環境という最高のスパイスによって脳も身体も大きくアップデートできる<strong>「最高の万能薬」</strong>です。何が起こるか分からない環境で、体力・知力・精神力を発揮してゴールを目指しましょう。
+            </p>
+            <div class="border-t border-slate-800 pt-8 text-sm">
+                <p>&copy; 登山の教科書 Summary Page. Created based on the provided document.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lucideアイコンの初期化
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+
+```
